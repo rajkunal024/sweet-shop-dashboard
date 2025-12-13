@@ -42,8 +42,15 @@ You can install Node.js using **nvm**:
 👉 https://github.com/nvm-sh/nvm#installing-and-updating
 
 ---
+---
 
+# Application Login page
+![Login Page](screenshot/loginpage.png)
+
+# Main Page
+![Responsive View](screenshot/mainpage.png)
 ### 🚀 Run Locally Using Your IDE
+---
 
 ```sh
 # Step 1: Clone the repository
@@ -57,10 +64,4 @@ npm install
 
 # Step 4: Start the development server
 npm run dev
-
-# Application Login page
-![Login Page](screenshot/loginpage.png)
-
-# Main Page
-![Responsive View](screenshot/mainpage.png)
 
