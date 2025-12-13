@@ -58,6 +58,9 @@ npm install
 # Step 4: Start the development server
 npm run dev
 
-![Login Page](screenshots/loginpage.png)
-![Responsive View](screenshots/mainpage.png)
+# Application Login page
+![Login Page](screenshot/loginpage.png)
+
+# Main Page
+![Responsive View](screenshot/mainpage.png)
 
