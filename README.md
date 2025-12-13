@@ -42,7 +42,6 @@ You can install Node.js using **nvm**:
 👉 https://github.com/nvm-sh/nvm#installing-and-updating
 
 ---
----
 
 # Application Login page
 ![Login Page](screenshot/loginpage.png)
