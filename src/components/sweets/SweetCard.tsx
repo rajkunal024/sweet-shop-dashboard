@@ -1,8 +1,8 @@
 import { Sweet } from '@/types/sweet';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Package } from 'lucide-react';
-import { usePurchaseSweet } from '@/hooks/useSweets';
 import { useAuth } from '@/lib/auth-context';
+import { useCart } from '@/lib/cart-context';
 import { cn } from '@/lib/utils';
 
 interface SweetCardProps {
@@ -22,12 +22,12 @@ const categoryStyles: Record<string, string> = {
 
 export function SweetCard({ sweet }: SweetCardProps) {
   const { user } = useAuth();
-  const purchaseMutation = usePurchaseSweet();
+  const { addToCart } = useCart();
   const isOutOfStock = sweet.quantity === 0;
 
-  const handlePurchase = () => {
+  const handleAddToCart = () => {
     if (!user) return;
-    purchaseMutation.mutate({ sweetId: sweet.id, quantity: 1 });
+    addToCart(sweet);
   };
 
   const getCategoryStyle = (category: string) => {
@@ -95,12 +95,12 @@ export function SweetCard({ sweet }: SweetCardProps) {
           <Button
             variant="sweet"
             size="sm"
-            onClick={handlePurchase}
-            disabled={isOutOfStock || !user || purchaseMutation.isPending}
+            onClick={handleAddToCart}
+            disabled={isOutOfStock || !user}
             className="gap-2"
           >
             <ShoppingCart className="h-4 w-4" />
-            {purchaseMutation.isPending ? 'Buying...' : 'Buy'}
+            Add to Cart
           </Button>
         </div>
       </div>

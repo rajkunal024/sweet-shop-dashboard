@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
+import { CartButton } from '@/components/cart/CartButton';
 import { Candy, LogOut, Shield, User } from 'lucide-react';
 import {
   DropdownMenu,
@@ -50,6 +51,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {user && <CartButton />}
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
