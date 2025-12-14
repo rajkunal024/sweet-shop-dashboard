@@ -104,14 +104,11 @@ export default function Index() {
       {/* Footer */}
       <footer className="border-t border-border py-8">
         <div className="container">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             <div className="flex items-center gap-2">
               <Candy className="h-5 w-5 text-primary" />
               <span className="font-serif font-medium">SweetShop</span>
             </div>
-            <p className="text-sm text-muted-foreground">
-              © 2024 SweetShop. All rights reserved.
-            </p>
           </div>
         </div>
       </footer>

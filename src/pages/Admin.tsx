@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { Header } from '@/components/layout/Header';
 import { AdminSweetTable } from '@/components/admin/AdminSweetTable';
+import { AdminUsersTable } from '@/components/admin/AdminUsersTable';
 import { SweetForm } from '@/components/admin/SweetForm';
 import { useSweets, useAddSweet } from '@/hooks/useSweets';
+import { useUsers } from '@/hooks/useUsers';
 import { SweetFormData } from '@/types/sweet';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,8 +16,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
-import { Plus, Search, Package, ShoppingBag, AlertTriangle, Loader2 } from 'lucide-react';
+import { Plus, Search, Package, ShoppingBag, AlertTriangle, Loader2, Users } from 'lucide-react';
 
 export default function Admin() {
   const { user, isAdmin, loading } = useAuth();
@@ -24,6 +27,7 @@ export default function Admin() {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
 
   const { data: sweets = [], isLoading } = useSweets(searchQuery || undefined);
+  const { data: users = [] } = useUsers();
   const addMutation = useAddSweet();
 
   useEffect(() => {
@@ -89,7 +93,7 @@ export default function Admin() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
             <div className="rounded-xl border border-border bg-card p-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -125,27 +129,53 @@ export default function Admin() {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Search */}
-          <div className="relative max-w-md mb-6">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search sweets..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          {/* Table */}
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <div className="rounded-xl border border-border bg-card p-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <Users className="h-6 w-6 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Total Users</p>
+                  <p className="text-2xl font-bold text-foreground">{users.length}</p>
+                </div>
+              </div>
             </div>
-          ) : (
-            <AdminSweetTable sweets={sweets} />
-          )}
+          </div>
+
+          {/* Tabs */}
+          <Tabs defaultValue="sweets" className="space-y-6">
+            <TabsList>
+              <TabsTrigger value="sweets">Sweets</TabsTrigger>
+              <TabsTrigger value="users">Users</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="sweets" className="space-y-6">
+              {/* Search */}
+              <div className="relative max-w-md">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search sweets..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+
+              {/* Table */}
+              {isLoading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                </div>
+              ) : (
+                <AdminSweetTable sweets={sweets} />
+              )}
+            </TabsContent>
+
+            <TabsContent value="users">
+              <AdminUsersTable />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>
