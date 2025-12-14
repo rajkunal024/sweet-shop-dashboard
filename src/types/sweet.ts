@@ -18,7 +18,6 @@ export interface SweetFormData {
   description?: string;
   image_url?: string;
 }
-
 export const SWEET_CATEGORIES = [
   'Chocolate',
   'Candy',

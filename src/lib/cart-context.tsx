@@ -17,7 +17,6 @@ interface CartContextType {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
 }
-
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {

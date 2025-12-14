@@ -26,7 +26,6 @@ export function useUsers() {
         .select('user_id, role');
 
       if (rolesError) throw rolesError;
-
       const rolesMap = new Map(roles?.map((r) => [r.user_id, r.role]) || []);
 
       return (profiles || []).map((profile) => ({

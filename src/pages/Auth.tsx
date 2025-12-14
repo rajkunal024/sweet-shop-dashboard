@@ -22,7 +22,6 @@ export default function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-
   const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
 

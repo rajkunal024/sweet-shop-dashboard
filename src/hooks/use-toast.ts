@@ -49,7 +49,6 @@ type Action =
 interface State {
   toasts: ToasterToast[];
 }
-
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
 const addToRemoveQueue = (toastId: string) => {

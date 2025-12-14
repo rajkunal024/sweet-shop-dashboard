@@ -12,7 +12,6 @@ export default function Index() {
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
-
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 

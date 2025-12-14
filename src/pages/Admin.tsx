@@ -25,7 +25,6 @@ export default function Admin() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [addDialogOpen, setAddDialogOpen] = useState(false);
-
   const { data: sweets = [], isLoading } = useSweets(searchQuery || undefined);
   const { data: users = [] } = useUsers();
   const addMutation = useAddSweet();

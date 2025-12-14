@@ -29,7 +29,6 @@ export function useSweets(searchQuery?: string, category?: string, minPrice?: nu
       }
 
       const { data, error } = await query;
-
       if (error) {
         throw error;
       }
