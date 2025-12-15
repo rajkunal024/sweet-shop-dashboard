@@ -48,8 +48,34 @@ You can install Node.js using **nvm**:
 
 # Main Page
 ![Responsive View](screenshot/mainpage.png)
-### 🚀 Run Locally Using Your IDE
+
+# Admin View
+![Admin View](screenshot/admin.png)
+
 ---
+## 🧭 How to Sign Up
+
+1. Open the app and click **“Sign Up”**.
+2. Enter your **email address** and **password**.
+3. Add your **full name** — it will appear in your profile.
+4. Click **Create Account**.
+
+
+> You’ll be redirected to the dashboard after a successful signup.
+
+---
+
+## 🔐 How to Log In
+
+1. Go to the **Login** page.
+2. Enter your **registered email** and **password**.
+3. Click **Log In**.
+
+If credentials are valid, Supabase returns a user session and stores it securely in the browser.
+
+---
+
+### 🚀 Run Locally Using Your IDE
 
 ```sh
 # Step 1: Clone the repository
