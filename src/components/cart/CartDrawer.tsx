@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { formatINR } from '@/lib/utils';
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, updateQuantity, removeFromCart, clearCart, totalPrice, totalItems } = useCart();
@@ -103,7 +104,7 @@ export function CartDrawer() {
                         {item.sweet.name}
                       </h4>
                       <p className="text-sm text-muted-foreground">
-                        ${Number(item.sweet.price).toFixed(2)} each
+                        {formatINR(Number(item.sweet.price))} each
                       </p>
 
                       {/* Quantity Controls */}
@@ -142,7 +143,7 @@ export function CartDrawer() {
                     {/* Item Total */}
                     <div className="text-right">
                       <span className="font-semibold text-primary">
-                        ${(Number(item.sweet.price) * item.quantity).toFixed(2)}
+                        {formatINR(Number(item.sweet.price) * item.quantity)}
                       </span>
                     </div>
                   </div>
@@ -153,7 +154,7 @@ export function CartDrawer() {
             <div className="border-t pt-4 space-y-4">
               <div className="flex items-center justify-between text-lg font-semibold">
                 <span>Total</span>
-                <span className="text-primary">${totalPrice.toFixed(2)}</span>
+                <span className="text-primary">{formatINR(totalPrice)}</span>
               </div>
               
               <Button

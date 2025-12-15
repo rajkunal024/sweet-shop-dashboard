@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart, Package } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import { useCart } from '@/lib/cart-context';
-import { cn } from '@/lib/utils';
+import { cn, formatINR } from '@/lib/utils';
 
 interface SweetCardProps {
   sweet: Sweet;
@@ -89,7 +89,7 @@ export function SweetCard({ sweet }: SweetCardProps) {
 
         <div className="flex items-center justify-between">
           <span className="text-xl font-bold text-primary">
-            ${Number(sweet.price).toFixed(2)}
+            {formatINR(Number(sweet.price))}
           </span>
           
           <Button
