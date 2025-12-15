@@ -50,3 +50,4 @@ export function SweetGrid({ sweets, isLoading }: SweetGridProps) {
     </div>
   );
 }
+

@@ -107,3 +107,4 @@ export function SweetCard({ sweet }: SweetCardProps) {
     </div>
   );
 }
+

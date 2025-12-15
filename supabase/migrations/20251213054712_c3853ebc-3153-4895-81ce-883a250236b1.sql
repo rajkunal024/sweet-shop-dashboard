@@ -188,6 +188,7 @@ BEGIN
 END;
 $$;
 
+
 -- Function for restocking sweets (admin only)
 CREATE OR REPLACE FUNCTION public.restock_sweet(sweet_id UUID, restock_quantity INTEGER)
 RETURNS BOOLEAN
