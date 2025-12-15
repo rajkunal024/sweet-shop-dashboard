@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { CartButton } from '@/components/cart/CartButton';
-import { Candy, LogOut, Shield, User } from 'lucide-react';
+import { Candy, LogOut, Shield, User, History } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -67,15 +67,19 @@ export function Header() {
                   </p>
                 </div>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate('/orders')}>
+                  <History className="mr-2 h-4 w-4" />
+                  Order History
+                </DropdownMenuItem>
                 {isAdmin && (
                   <>
                     <DropdownMenuItem onClick={() => navigate('/admin')}>
                       <Shield className="mr-2 h-4 w-4" />
                       Admin Dashboard
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator />
                   </>
                 )}
+                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
