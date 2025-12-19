@@ -8,6 +8,8 @@ interface UserProfile {
   full_name: string | null;
   created_at: string;
   role: 'admin' | 'user';
+  totalOrders: number;
+  totalSpent: number;
 }
 
 export function useUsers() {
@@ -26,11 +28,30 @@ export function useUsers() {
         .select('user_id, role');
 
       if (rolesError) throw rolesError;
+
+      // Fetch all purchases for order stats
+      const { data: purchases, error: purchasesError } = await supabase
+        .from('purchases')
+        .select('user_id, total_price');
+
+      if (purchasesError) throw purchasesError;
+
       const rolesMap = new Map(roles?.map((r) => [r.user_id, r.role]) || []);
+
+      // Calculate order stats per user
+      const orderStatsMap = new Map<string, { totalOrders: number; totalSpent: number }>();
+      purchases?.forEach((p) => {
+        const stats = orderStatsMap.get(p.user_id) || { totalOrders: 0, totalSpent: 0 };
+        stats.totalOrders += 1;
+        stats.totalSpent += Number(p.total_price);
+        orderStatsMap.set(p.user_id, stats);
+      });
 
       return (profiles || []).map((profile) => ({
         ...profile,
         role: rolesMap.get(profile.id) || 'user',
+        totalOrders: orderStatsMap.get(profile.id)?.totalOrders || 0,
+        totalSpent: orderStatsMap.get(profile.id)?.totalSpent || 0,
       })) as UserProfile[];
     },
   });

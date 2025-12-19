@@ -135,7 +135,7 @@ export default function Admin() {
                   <Users className="h-6 w-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Total Users</p>
+                  <p className="text-sm text-muted-foreground">Registered Users</p>
                   <p className="text-2xl font-bold text-foreground">{users.length}</p>
                 </div>
               </div>

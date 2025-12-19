@@ -20,9 +20,10 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Badge } from '@/components/ui/badge';
-import { Trash2, Loader2 } from 'lucide-react';
+import { Trash2, Loader2, ShoppingBag, IndianRupee } from 'lucide-react';
 import { format } from 'date-fns';
 import { useAuth } from '@/lib/auth-context';
+import { formatINR } from '@/lib/utils';
 
 export function AdminUsersTable() {
   const { user: currentUser } = useAuth();
@@ -46,13 +47,15 @@ export function AdminUsersTable() {
             <TableHead>Name</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>Joined</TableHead>
+            <TableHead className="text-center">Orders</TableHead>
+            <TableHead className="text-right">Total Spent</TableHead>
             <TableHead className="w-[80px]">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+              <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                 No users found
               </TableCell>
             </TableRow>
@@ -68,6 +71,17 @@ export function AdminUsersTable() {
                 </TableCell>
                 <TableCell className="text-muted-foreground">
                   {format(new Date(user.created_at), 'MMM d, yyyy')}
+                </TableCell>
+                <TableCell className="text-center">
+                  <div className="flex items-center justify-center gap-1">
+                    <ShoppingBag className="h-4 w-4 text-muted-foreground" />
+                    <span className="font-medium">{user.totalOrders}</span>
+                  </div>
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex items-center justify-end gap-1">
+                    <span className="font-medium text-green-600">{formatINR(user.totalSpent)}</span>
+                  </div>
                 </TableCell>
                 <TableCell>
                   {user.id !== currentUser?.id && (
