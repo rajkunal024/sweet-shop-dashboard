@@ -43,14 +43,6 @@ You can install Node.js using **nvm**:
 
 ---
 
-# Application Login page
-![Login Page](screenshot/loginpage.png)
-
-# Main Page
-![Responsive View](screenshot/mainpage.png)
-
-# Admin View
-![Admin View](screenshot/admin.png)
 
 ---
 ## 🧭 How to Sign Up
