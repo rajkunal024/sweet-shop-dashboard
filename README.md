@@ -116,3 +116,15 @@ Make sure you have **Node.js (v20+)** and **npm** installed.
    ```bash
    npm run build
    ```
+---
+
+# Application Login page
+![Login Page](frontend/screenshot/loginpage.png)
+
+# Main Page
+![Responsive View](frontend/screenshot/mainpage.png)
+
+# Admin View
+![Admin View](frontend/screenshot/admin.png)
+
+---
